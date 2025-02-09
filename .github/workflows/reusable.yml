@@ -1,0 +1,22 @@
+name: Reusable Workflow
+
+on:
+    workflow_call:
+        inputs:
+            name:
+                description: 'Name of the person'
+                required: true
+                type: string
+        secrets:
+            GITHUB_TOKEN:
+                required: true
+
+jobs:
+    greet:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
+
+            - name: Print greeting
+              run: echo "Hello, ${{ inputs.name }}!"
